@@ -1,15 +1,16 @@
-# foru-mobile-home
->a wordpress plugin used to custom pages
+# wp-test-plugin
+>test plugin
 
 ## functions
-```bash
+```index
 
-#custom mobile homepage
-insert shortcode [ForuMobileHome] on homepage
+#sub Menutest.php
+自己编写的 create option page
 
-#custom service page
-insert shortcode [ForuServicePage] in your service page
-move /html/extraRes to website root directory
+#CreateOptionPage.php
+ from https://codex.wordpress.org/Creating_Options_Pagesy
 
+#subMenutest2.php
+ modal
 
 ```
