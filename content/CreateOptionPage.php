@@ -12,23 +12,24 @@ class MySettingsPage
      */
     public function __construct()
     {
-        add_action( 'admin_menu', array( $this, 'add_plugin_page' ) );
+        $this->messages = [];
+        $this->pageSlug = test_config_helper('create_option_slug');
+        add_action( 'admin_menu', array( $this, 'addAdminMenu' ) );
         add_action( 'admin_init', array( $this, 'page_init' ) );
+        add_action('admin_notices' , array($this, 'showPageNotice'));
     }
 
     /**
      * Add options page
      */
-    public function add_plugin_page()
+    public function addAdminMenu()
     {
-        // This page will be under "Settings"
-        add_options_page(
-            'Settings Admin', //page_title
-            'My Settings', //menu_title
-            'manage_options', //capability
-            'my-setting-admin', //menu_slug
-            array( $this, 'create_admin_page' ) //function
-        );
+        $menu_hook = add_submenu_page(
+            test_config_helper('test1_sulg'),
+            'create_option_page',
+            'create_option_menu',
+            'publish_posts',
+            $this->pageSlug,array($this,'create_admin_page'));
     }
 
     /**
@@ -40,8 +41,8 @@ class MySettingsPage
         $this->options = get_option( 'my_option_name' );
         ?>
         <div class="wrap">
-            <h1>My Settings</h1>
-            <form method="post" action="options.php">
+            <h1>My Create Option Page</h1>
+             <form action='options.php' method="post"><!--wp-admin/option.php: 'check_admin_referer' in opsition 157-->
             <?php
                 // This prints out all hidden setting fields
                 settings_fields( 'my_option_group' ); //Output nonce, action, and option_page fields for a settings page.
@@ -59,15 +60,15 @@ class MySettingsPage
     public function page_init()
     {
         register_setting( //Register a setting and its data.
-            'my_option_group', // Option group
-            'my_option_name', // Option name
-            array( $this, 'sanitize' ) // Sanitize
+            'my_option_group', // Option group (与settings_fields的命名一直)
+            'my_option_name', // Option name (数据库表wp_option添加新的字段'my_option_name')
+            array( $this, 'sanitize' )// Sanitize
         );
 
         add_settings_section(
             'setting_section_id', // ID
-            'My Custom Settings', // Title
-            array( $this, 'print_section_info' ), // Callback
+            null, //  My Custom Settings Title ->heading for the section
+            null, // Callback  print_section_info ->between heading and fields
             'my-setting-admin' // Page
         );
 
@@ -86,6 +87,14 @@ class MySettingsPage
             'my-setting-admin',
             'setting_section_id'
         );
+
+        add_settings_field(
+            'name',
+            'Name',
+            array( $this, 'name_callback' ),
+            'my-setting-admin',
+            'setting_section_id'
+        );
     }
 
     /**
@@ -96,11 +105,14 @@ class MySettingsPage
     public function sanitize( $input )
     {
         $new_input = array();
-        if( isset( $input['id_number'] ) )
+        if( isset( $input['id_number'] ))
             $new_input['id_number'] = absint( $input['id_number'] );
 
         if( isset( $input['title'] ) )
             $new_input['title'] = sanitize_text_field( $input['title'] );
+
+        if( isset( $input['name'] ) )
+            $new_input['name'] = sanitize_text_field( $input['name'] );
 
         return $new_input;
     }
@@ -134,6 +146,28 @@ class MySettingsPage
             isset( $this->options['title'] ) ? esc_attr( $this->options['title']) : ''
         );
     }
+
+    public function name_callback()
+    {
+        printf(
+            '<input type="text" id="title" name="my_option_name[name]" value="%s" />',
+            isset( $this->options['name'] ) ? esc_attr( $this->options['name']) : ''
+        );
+    }
+
+    //显示notic信息
+    public function showPageNotice()
+    {
+        foreach ($this->messages  as $message){
+            if ($message['status'] == 'success'){
+            echo sprintf("<div class='notice notice-success'><p><strong>%s</strong></p></div>",$message['message']);
+            }
+            else {
+            echo sprintf("<div class='notice notice-warning'><p><strong>%s</strong></p></div>",$message['message']);
+            }
+        }
+    }
+
 }
 
 if( is_admin() )

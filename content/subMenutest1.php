@@ -36,10 +36,10 @@
 
             if (isset($_POST['my-menu-test1-submit'])) {
                 check_admin_referer( 'add-noncefield', '_wpnonce_add-noncefield' );
-                if (isset($_POST['my-menu-test1-input1']) && !empty($_POST['my-menu-test1-input1'])) {
+                if (isset($_POST['my-menu-test1-input1']) && ($_POST['my-menu-test1-input1'])) {
                     update_option('testdata1',absint($_POST['my-menu-test1-input1']));
                 }
-                if (isset($_POST['my-menu-test1-input2']) && !empty($_POST['my-menu-test1-input2'])) {
+                if (isset($_POST['my-menu-test1-input2']) && ($_POST['my-menu-test1-input2'])) {
                     update_option('testdata2',sanitize_text_field($_POST['my-menu-test1-input2']));
                 }
             }
@@ -66,7 +66,7 @@
         public function showPageNotice()
         {
             foreach ($this->messages as $message) {
-                echo sprintf('<div class="notice"><p class="text-%s">%s<p></div>', $message['status'], $message['message']);
+                 sprintf('<div class="notice"><p class="text-%s">%s<p></div>', $message['status'], $message['message']);
             }
         }
     }
