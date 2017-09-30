@@ -15,7 +15,6 @@
                 'plural'   => 'salesmanTable',    // Plural name of the listed records.
                 'ajax'     => true,       // Does this table support ajax?
             ) );
-             $this->aa =222;
         }
 
         //The definition of the header column field
