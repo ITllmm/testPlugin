@@ -23,14 +23,6 @@
 
         public function salesman_table_interface()
         {
-
-            if(isset($_GET['_wp_http_referer'])){
-            echo '<pre>';
-            print_r(111111);
-            exit;
-            }
-
-
              $wp_list_table = new SalesmanTableList;
 
              ?>
