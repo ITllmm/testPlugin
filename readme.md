@@ -13,4 +13,7 @@
 #subMenutest2.php
  modal
 
+#SalesmanTable.php SalesmanTableList
+ WP_LIST_TABLE
+
 ```
