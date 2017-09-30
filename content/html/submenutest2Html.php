@@ -1,6 +1,41 @@
-<h1>modal</h1>
-
 <div class="wrap" >
+  <h1>Dedign own table</h1>
+  <div style="width: 80%">
+  <div>
+      <table class="table">
+       <thead>
+         <tr>
+           <th>Column Header #1</th>
+           <th>Column Header #2</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <th>Row Header1</th>
+           <td>I'm in a cell1</td>
+         </tr>
+         <tr>
+           <th>Row Header2</th>
+           <td>I'm in a cell2</td>
+         </tr>
+       </tbody>
+    </table>
+  </div>
+    <div style="float:right">
+       <ul class="pagination pagination-sm">
+         <li class="active"><a href="#">&laquo;</a></li>
+          <li class="hidden"><a href="#">1</a></li>
+          <li class="active"><a href="#">2</a></li>
+          <li class="active"><a href="#">3</a></li>
+          <li class="hidden"><a href="#">4</a></li>
+          <li class="active"><a href="#">5</a></li>
+          <li class="active"><a href="#">&raquo;</a></li>
+      </ul>
+  </div>
+  </div>
+<br/>
+
+<h1>modal</h1>
   <input type="submit" class="button-primary button" value="my-menu-test2-modal" name="my-menu-test2-modal" data-toggle="modal" data-target="#myModal">
   <!--  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> -->
 </div>
