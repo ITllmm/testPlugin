@@ -8,6 +8,7 @@
     {
         function __construct()
         {
+
             $this->messages = [];
             $this->pageSlug = test_config_helper('test1_sulg');
             add_action( 'admin_menu',   array($this, 'addAdminMenu') );
