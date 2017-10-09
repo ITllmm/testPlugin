@@ -1,6 +1,6 @@
 <?php
 
-    if(!class_exists('WP_List_Table')){
+    if (!class_exists('WP_List_Table')) {
         include(ABSPATH.'/wp-admin/includes/class-wp-list-table.php');
     }
 
@@ -10,11 +10,11 @@
         public function __construct()
         {
             $this->per_page = 4; //set pagenum
-             parent::__construct( array(
+             parent::__construct(array(
                 'singular' => 'salesmanTable',     // Singular name of the listed records.
                 'plural'   => 'salesmanTable',    // Plural name of the listed records.
                 'ajax'     => true,       // Does this table support ajax?
-            ) );
+            ));
         }
 
         //The definition of the header column field
@@ -33,7 +33,6 @@
         // Handles the default column output.
         public function  column_default($item, $column_name )
         {
-
             switch($column_name) {
                 case 'id':
                     return $item['id'];
@@ -51,13 +50,14 @@
         //Prepares the list of items for displaying.
         public function prepare_items()
         {
-
             //1.set table header
             $columns  = $this->get_columns();
             $hidden   = array();//hidden table field
             $sortable = $this->get_sortable_columns();
             $this->_column_headers = array( $columns, $hidden, $sortable );
+
             //2.deal with actions
+
             //3.fetch data and set this->items
             $items = self::get_customers($this->per_page,$this->get_pagenum());
             $this->items = $items['data'];

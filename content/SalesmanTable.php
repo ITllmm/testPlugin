@@ -1,5 +1,5 @@
 <?php
-
+//http://wpengineer.com/2426/wp_list_table-a-step-by-step-guide/
     require_once __DIR__.'/SalesmanTableList.php';
 
     class SalesmanTable
@@ -12,12 +12,6 @@
 
         public function addNetAdminMenu()
         {
-
-            // if ( ! empty($_REQUEST['_wp_http_referer']) ) { //url params
-            //          wp_redirect( remove_query_arg( array('_wp_http_referer', '_wpnonce'), wp_unslash($_SERVER['REQUEST_URI']) ) );
-            //          exit;
-            // }
-
             $menu_hook = add_submenu_page(test_config_helper('net_salesmantable_slug'),'saletable_pagetitle','saletable_menutitle','publish_posts',$this->pageSlug,array($this,'salesman_table_interface'));
         }
 
