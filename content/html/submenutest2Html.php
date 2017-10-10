@@ -63,6 +63,20 @@
     </div>
 </div>
 
+<h1>highlight</h1>
+<div class="ui-widget">
+        <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
+          <p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+            <strong>Hey!</strong> Sample ui-state-highlight style.</p>
+        </div>
+ </div>
+<br/>
+ <div class="ui-widget">
+        <div class="ui-state-error ui-corner-all" style="padding: 0.7em 0.7em 0.7em 0.7em;">
+          <p style="margin-top:.4em;"><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+            <strong>Alert:</strong> Sample ui-state-error style.</p>
+        </div>
+  </div>
 
 <!---start modal-->
 

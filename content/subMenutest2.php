@@ -30,7 +30,8 @@
       //var_dump(plugins_url()); -> http://template1.wpdemo.app/wp-content/plugins ->a hrefs
       //var_dump(__DIR__);-> /home/www/wpdemo/wp-content/plugins/wp-test-plugin/content
       wp_enqueue_style( 'bootstrap-css',"//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
-      wp_enqueue_style('jquery-ui-css','//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+     // 加载wordpress的jquery-ui-css 凡是涉及到样式以　ui-这样形式开头的都是调用这里的样式
+      wp_enqueue_style('jquery-ui-css','/wp-content/plugins/wordpress-admin-style/inc/../css/jquery-ui-fresh.css');
     }
 
     public function showPageHtml()
