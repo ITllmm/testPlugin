@@ -8,9 +8,8 @@
     {
         function __construct()
         {
-
             $this->messages = [];
-            $this->pageSlug = test_config_helper('test1_sulg');
+            $this->pageSlug = test_config_helper('admin_test_slug');
             add_action( 'admin_menu',   array($this, 'addAdminMenu') );
             add_action ('wp_head',array($this,'head')); //set theme head
             add_action('wp_footer',array($this,'footer'));//set theme footer
@@ -19,7 +18,8 @@
 
         public function addAdminMenu()
         {
-            $menu_hook = add_submenu_page( $this->pageSlug,'sub1_pagetitle','sub1_menutitle','publish_posts', $this->pageSlug,array($this,'showPageHtml'));
+            $menu_hook = add_submenu_page( test_config_helper('admin_test_slug'),'sub1_pagetitle','sub1_menutitle','publish_posts', $this->pageSlug,array($this,'showPageHtml'));
+
             add_action('load-'.$menu_hook,array($this,'preWork'));
          }
 

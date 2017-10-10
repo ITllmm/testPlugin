@@ -23,7 +23,7 @@ class CreateOptionPage
     public function add_admin_menu()
     {
         $menu_hook = add_submenu_page(
-        test_config_helper( 'test1_sulg' ),
+        test_config_helper( 'admin_test_slug' ),
         'create_option_page',
         'create_option_menu',
         'publish_posts',

@@ -1,4 +1,4 @@
-<div class='drap'>
+<div class='wrap'>
     <h1>Sun Menu Test1</h1>
     <form action="<?php  echo admin_url('admin.php?page='.$this->pageSlug);?>" method="post">
 

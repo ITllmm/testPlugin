@@ -40,6 +40,30 @@
   <!--  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> -->
 </div>
 
+<h1>datepicker</h1>
+<div>
+<input type="text" class="datepicker" name="datepicker" value="" />
+</div>
+
+<h1>Tabs</h1>
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Nunc tincidunt</a></li>
+        <li><a href="#tabs-2">Proin dolor</a></li>
+        <li><a href="#tabs-3">Aenean lacinia</a></li>
+    </ul>
+    <div id="tabs-1">
+        <p>Tab 1 content.</p>
+    </div>
+    <div id="tabs-2">
+        <p>Tab 2 content</p>
+    </div>
+    <div id="tabs-3">
+        <p>Tab 3 content</p>
+    </div>
+</div>
+
+
 <!---start modal-->
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -62,3 +86,15 @@
     </div>
   </div>
 </div>
+
+<script>
+jQuery(function() {
+
+    jQuery( ".datepicker" ).datepicker({
+        dateFormat : "dd-mm-yy"
+    });
+
+    jQuery('#tabs').tabs(); //$('#tabs').tabs() : error
+
+});
+</script>

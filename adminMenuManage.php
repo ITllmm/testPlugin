@@ -10,12 +10,12 @@ class AdminMenuManage
 
     public function addNetAdminMenu()
     {
-        $menu_hool = add_menu_page('test_pagetitle','test_menutitle','publish_posts','net_salesmantable_slug',null);
+        $menu_hook = add_menu_page('test_pagetitle','test_menutitle','publish_posts','net_test_slug',null);
     }
 
     public function addAdminMenu()
     {
-        $menu_hook = add_menu_page('test_pagetitle','test_menutitle','publish_posts','test1_menuslug',null);
+        $menu_hook = add_menu_page('test_pagetitle','test_menutitle','publish_posts','admin_test_slug',null);
     }
 
 }

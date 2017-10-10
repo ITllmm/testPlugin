@@ -11,7 +11,7 @@
  from https://codex.wordpress.org/Creating_Options_Pagesy
 
 #subMenutest2.php
- modal
+ modal datepicker,tabs
 
 #SalesmanTable.php SalesmanTableList
  WP_LIST_TABLE
