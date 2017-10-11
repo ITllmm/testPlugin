@@ -16,4 +16,7 @@
 #SalesmanTable.php SalesmanTableList
  WP_LIST_TABLE
 
+ #Wallet/admin/SalerManagerTest.php
+ salerManager ->from wp-woo-waller/admin/SalerManagerForu.php
+
 ```
