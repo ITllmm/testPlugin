@@ -13,4 +13,5 @@ require_once __DIR__.'/content/CreateOptionPage.php';
 require_once __DIR__.'/content/SalesmanTable.php';
 
 require_once __DIR__.'/wallet/admin/SalerManagerTest.php';
+require_once __DIR__.'/wallet/admin/SiteManagerTest.php';
 

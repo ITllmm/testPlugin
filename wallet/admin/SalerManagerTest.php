@@ -34,6 +34,7 @@
         //get saler datas
         public function preWork()
         {
+
             if(!empty($_POST)){
                 $this->handlePostRequest();
             }
@@ -70,7 +71,7 @@
                 $requestData = [
                     'name' => sanitize_text_field($_POST['saler_name']),
                     'email' => validate_email($_POST['saler_email']),
-                    'oldEamil' => $_POST['old_saler_email']
+                    'oldEamil' => sanitize_email($_POST['old_saler_email'])
                 ];
 
                 try {
@@ -91,7 +92,7 @@
 
         public function showPageHtml()
         {
-            include_once(__DIR__.'/html/ShowPageHtml.php');
+            include_once(__DIR__.'/html/ShowSalerManageHtml.php');
         }
 
         public function showTabledata()
@@ -99,10 +100,10 @@
             $result = '';
             foreach ($this->salers as $salers) {
                 $temp = '';
-                $temp.= sprintf('<td>%s</td>',$salers['user']['id']);
-                $temp.= sprintf('<td>%s</td>',$salers['user']['name']);
-                $temp.= sprintf('<td>%s</td>',$salers['user']['email']);
-                $temp.= sprintf('<td>%s</td>',$this->outBlogInfo($salers['blogs']));
+                $temp .= sprintf('<td>%s</td>',$salers['user']['id']);
+                $temp .= sprintf('<td>%s</td>',$salers['user']['name']);
+                $temp .= sprintf('<td>%s</td>',$salers['user']['email']);
+                $temp .= sprintf('<td>%s</td>',$this->outBlogInfo($salers['blogs']));
                 $result .= sprintf('<tr>%s</tr>',$temp);
             }
             echo $result;

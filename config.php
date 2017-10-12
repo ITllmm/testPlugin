@@ -8,4 +8,5 @@
         'create_option_slug' => 'create_option_slug',
         'saler_manager_test' => 'saler_manager_test',
         'saler_root_blog_domain' => 'template.wpdemo.app',
+        'site_manager_test' => 'site_manager_test',
     ];

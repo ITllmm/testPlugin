@@ -42,7 +42,6 @@
                     add_user_to_blog( $blog->userblog_id, $user_id, 'salesman' );
                 }
 
-
             } else { //新增用户
 
                 $blog_id = get_blog_id_from_url(test_config_helper('saler_root_blog_domain'));
