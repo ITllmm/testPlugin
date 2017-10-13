@@ -27,18 +27,21 @@
           <div class="row modal-body">
 
             <div class="col-md-4">
-             <label>Set Profit(%)</label>
+             <label style="float:right;margin-top: 3px;">Set Profit(%)</label>
             </div>
             <div class="col-md-6">
+            <div class="col-md-8">
               <input type="number" min="0" max="100" name="profit_value" class="form-control" id="profit_value" value="10" step="0.01">
               </div>
               <div class="col-md-4">
-                <span>%</span>
+                <span style="margin-left: -20px;line-height: 25px;">%</span>
               </div>
+                    </div>
+
           </div>
           <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary" > Submit</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary" > Submit</button>
           </div>
         </div>
       </div>

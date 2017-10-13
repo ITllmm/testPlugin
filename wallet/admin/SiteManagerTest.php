@@ -61,7 +61,7 @@
 
             if(isset($_POST['action']) && $_POST['action'] == 'set_profit'){
 
-                $profit = number_format(floatval($_POST['profit_value']));
+                $profit = number_format(floatval($_POST['profit_value']),2);
                 $user_id = substr($_POST['action_user'], 5); //user_id
                 $balance  = get_user_meta($user_id, 'foru_balance');
                 $balance['profit'] = $profit;
