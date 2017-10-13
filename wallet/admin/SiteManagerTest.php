@@ -4,6 +4,7 @@
     {
         protected $page_slug;
         protected $sites;
+
         public function __construct()
         {
             $this->page_slug = test_config_helper('site_manager_test');
@@ -23,6 +24,25 @@
         public function preWork()
         {
 
+            if(!empty($_POST['action'])){
+                $this->handlePostRequest();
+            }
+
+            //site:wpdemp.app  blog belong to site
+           if (isset($_GET['state_nonce_url'])) {
+
+                if(wp_verify_nonce($_GET['state_nonce_url'],'state_action_url')){
+
+                    switch_to_blog($_GET['site']);
+                    update_blog_public($_GET['value'],!$_GET['value']);
+                    restore_current_blog();
+                }
+
+                  wp_redirect( network_admin_url( //order to  'url' no show nonce data
+                    sprintf('admin.php?page=%s', $this->page_slug)));
+
+           }
+
             $sites = get_sites(array('order' => 'DESC'));//$sales = getUserInfo()
 
             $result = array_map(function($site) {
@@ -31,6 +51,23 @@
             },$sites);
 
             $this->sites = $result;
+
+        }
+
+        public function handlePostRequest()
+        {
+
+           check_admin_referer('set_profit_test',$this->page_slug);
+
+            if(isset($_POST['action']) && $_POST['action'] == 'set_profit'){
+
+                $profit = number_format(floatval($_POST['profit_value']));
+                $user_id = substr($_POST['action_user'], 5); //user_id
+                $balance  = get_user_meta($user_id, 'foru_balance');
+                $balance['profit'] = $profit;
+                update_user_meta( $user_id, 'foru_balance', $balance);
+
+            }
 
         }
 
@@ -43,15 +80,24 @@
         {
             $result = '';
             foreach ($this->sites as $site) {
+
                 $temp = "<tr>";
+
                 $temp .= sprintf("<td>%s</td>",$site->blog_id);
+
                 $temp .= sprintf("<td>%s</td>",$site->domain);
-                $temp .= sprintf("<td>%s <a href='#'>%.2f%%</a></td>",$site->user['saler']['name'],$site->user['saler']['balance']['profit']);
-                $temp .= sprintf("<td>%s <a href='#'>%.2f%%</a></td>",$site->user['shopmanage']['name'],$site->user['shopmanage']['balance']['profit']);
-                $temp .= sprintf("<td><a href='#' class='text-%s'>%s</a></td>",$site->public == 1?'info':'danger',$site->public == 1?'valid':'invalid');
+
+                $temp .= sprintf("<td>%s <a href='#' id='user_%s' value=%s class='setProfit'>%.2f%%</a></td>",$site->user['saler']['name'],$site->user['saler']['id'],$site->user['saler']['balance']['profit'],$site->user['saler']['balance']['profit']);
+
+                $temp .= sprintf("<td>%s <a href='#' id='user_%s' value=%s class='setProfit'>%.2f%%</a></td>",$site->user['shopmanage']['name'],$site->user['shopmanage']['id'],$site->user['shopmanage']['balance']['profit'],$site->user['shopmanage']['balance']['profit']);
+
+                $temp .= sprintf("<td><a href='%s' class='text-%s'>%s</a></td>",wp_nonce_url(network_admin_url(sprintf("admin.php?page=%s&value=%s&site=%s",$this->page_slug,$site->public,$site->blog_id)),'state_action_url','state_nonce_url'),$site->public == 1?'info':'danger',$site->public == 1?'valid':'invalid');
+
                 $temp .= '</tr>';
+
                 $result .= $temp;
             }
+
             echo $result;
         }
 
