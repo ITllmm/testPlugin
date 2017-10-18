@@ -87,9 +87,19 @@
 
                 $temp .= sprintf("<td>%s</td>",$site->domain);
 
-                $temp .= sprintf("<td>%s <a href='#' id='user_%s' value=%s class='setProfit'>%.2f%%</a></td>",$site->user['saler']['name'],$site->user['saler']['id'],$site->user['saler']['balance']['profit'],$site->user['saler']['balance']['profit']);
+                if ( !empty($site->user['saler']['name'] ) ) {
+                    $temp .= sprintf("<td>%s <a href='#' id='user_%s' value=%s class='setProfit'>%.2f%%</a></td>",$site->user['saler']['name'],$site->user['saler']['id'],$site->user['saler']['balance']['profit'],$site->user['saler']['balance']['profit']);
+               }
+               else{
+                    $temp .= '<td></td>';
+               }
 
-                $temp .= sprintf("<td>%s <a href='#' id='user_%s' value=%s class='setProfit'>%.2f%%</a></td>",$site->user['shopmanage']['name'],$site->user['shopmanage']['id'],$site->user['shopmanage']['balance']['profit'],$site->user['shopmanage']['balance']['profit']);
+               if ( !empty($site->user['shopmanage']['name'] ) ) {
+                    $temp .= sprintf("<td>%s <a href='#' id='user_%s' value=%s class='setProfit'>%.2f%%</a></td>",$site->user['shopmanage']['name'],$site->user['shopmanage']['id'],$site->user['shopmanage']['balance']['profit'],$site->user['shopmanage']['balance']['profit']);
+               }
+               else{
+                    $temp .= '<td></td>';
+               }
 
                 $temp .= sprintf("<td><a href='%s' class='text-%s'>%s</a></td>",wp_nonce_url(network_admin_url(sprintf("admin.php?page=%s&value=%s&site=%s",$this->page_slug,$site->public,$site->blog_id)),'state_action_url','state_nonce_url'),$site->public == 1?'info':'danger',$site->public == 1?'valid':'invalid');
 
